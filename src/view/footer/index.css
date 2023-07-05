@@ -1,0 +1,29 @@
+.footer {
+    flex-shrink: 0;
+    background-color: #bcaaa4;
+}
+
+.footer__link {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    gap: 30px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #ffd54f;
+    display: block;
+    transition: all 300ms ease-out;
+}
+
+.footer a:hover {
+    transform: scale(1.1);
+}
+
+.footer span {
+    color: #ffecb3;
+}

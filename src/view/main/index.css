@@ -1,0 +1,7 @@
+.main {
+    flex-grow: 1;
+    width: 100%;
+    font-family: Verdana, sans-serif;
+    margin-bottom: 0;
+    padding: 2rem;
+}
