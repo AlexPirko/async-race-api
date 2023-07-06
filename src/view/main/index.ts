@@ -1,14 +1,18 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
+import Garage from '../garage';
 
 export default class Main {
     main: HTMLElement;
 
     mainContent: HTMLElement;
 
+    garage: Garage;
+
     constructor() {
         this.main = addElement('main', ['main']);
         this.mainContent = addElement('div', ['main-content']);
+        this.garage = new Garage();
     }
 
     createMainContent(): void {
@@ -30,6 +34,8 @@ export default class Main {
 
     render(): HTMLElement {
         this.createMainContent();
+        const garage = this.garage.render();
+        this.mainContent.append(garage);
         return this.main;
     }
 }

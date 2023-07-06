@@ -1,0 +1,15 @@
+.secondary-block {
+    margin: 2rem 0;
+}
+
+.secondary-block>div {
+    margin: 0.8rem 0;
+}
+
+.title {
+    margin-bottom: 0.5rem;
+}
+
+.race-block {
+    margin: 1.5rem 0;
+}
