@@ -1,0 +1,12 @@
+.winners {
+    display: none;
+}
+
+.win-table {
+    margin: 1.5rem 0;
+}
+
+table,
+th {
+    border: 1px solid black;
+}

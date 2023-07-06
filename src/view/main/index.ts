@@ -1,6 +1,7 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
 import Garage from '../garage';
+import Winners from '../winners';
 
 export default class Main {
     main: HTMLElement;
@@ -9,10 +10,13 @@ export default class Main {
 
     garage: Garage;
 
+    winners: Winners;
+
     constructor() {
         this.main = addElement('main', ['main']);
         this.mainContent = addElement('div', ['main-content']);
         this.garage = new Garage();
+        this.winners = new Winners();
     }
 
     createMainContent(): void {
@@ -35,7 +39,8 @@ export default class Main {
     render(): HTMLElement {
         this.createMainContent();
         const garage = this.garage.render();
-        this.mainContent.append(garage);
+        const winners = this.winners.render();
+        this.mainContent.append(garage, winners);
         return this.main;
     }
 }

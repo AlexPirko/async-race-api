@@ -29,7 +29,7 @@ export default class Garage {
             </div>
         <div class="primary-block">
             <div class="info-block">
-                <h1 class="title">Garage<span class="cars-amount">0</span></h1>
+                <h1 class="title">Garage<span class="cars-amount">(0)</span></h1>
                 <h3 class="num-title">Page #<span class="num-page">0</span></h3>
             </div>
             <div class="race-block">                
