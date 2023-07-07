@@ -1,11 +1,15 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
+import Track from '../track';
 
 export default class Garage {
     garage: HTMLElement;
 
+    track: Track;
+
     constructor() {
         this.garage = addElement('div', ['garage']);
+        this.track = new Track();
     }
 
     createGarageBlock(): void {
@@ -32,8 +36,6 @@ export default class Garage {
                 <h1 class="title">Garage<span class="cars-amount">(0)</span></h1>
                 <h3 class="num-title">Page #<span class="num-page">0</span></h3>
             </div>
-            <div class="race-block">                
-            </div>
         </div>
         `;
 
@@ -42,6 +44,8 @@ export default class Garage {
 
     render(): HTMLElement {
         this.createGarageBlock();
+        const track = this.track.render();
+        this.garage.append(track);
         return this.garage;
     }
 }
