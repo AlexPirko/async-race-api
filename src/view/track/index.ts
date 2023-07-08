@@ -1,11 +1,17 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
+import { Car } from '../../types';
+import { GarageClient } from '../../components/client/garage-client';
 
 export default class Track {
-    track: HTMLElement;
+    public track: HTMLElement;
+
+    public garageClient: GarageClient;
 
     constructor() {
         this.track = addElement('div', ['track']);
+
+        this.garageClient = new GarageClient();
     }
 
     createCarImage(color: string): string {
@@ -109,7 +115,7 @@ export default class Track {
         </svg>`;
     }
 
-    createTrack(id: number, name: string, color: string): void {
+    createTrack(name: string, color: string, id: number): string {
         const html = `
         <div class="track-control" data-id="${id}">
             <button class="select-btn">select</button>
@@ -127,12 +133,22 @@ export default class Track {
           </div>
         </div>
         `;
+        return html;
+    }
+
+    async createRace() {
+        const { cars, count } = await this.garageClient.getCars();
+        console.log(count);
+        const html = `
+            <div class="race-block">${cars.map((car: Car) => this.createTrack(car.name, car.color, car.id)).join('')}
+            </div>
+        `;
 
         this.track.innerHTML = html;
     }
 
     render(): HTMLElement {
-        this.createTrack(1, 'Tesla', '#fff');
+        this.createRace();
         return this.track;
     }
 }

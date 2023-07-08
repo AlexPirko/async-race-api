@@ -64,7 +64,7 @@ export const carName: string[] = [
 
 export const carModel: string[] = [
     'Legend',
-    '	Spider',
+    'Spider',
     'Durango',
     'Matador',
     'Ram',
