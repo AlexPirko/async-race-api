@@ -25,7 +25,6 @@ export default class App {
 
     public run(): void {
         this.createPage();
-        this.listener.addRaceListeners();
-        this.listener.addTrackListeners();
+        this.listener.init();
     }
 }

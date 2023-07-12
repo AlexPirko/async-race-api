@@ -5,7 +5,7 @@ export default class Winners {
     winners: HTMLElement;
 
     constructor() {
-        this.winners = addElement('div', ['winners']);
+        this.winners = addElement('div', ['winners', 'hide']);
     }
 
     createWinnersBlock(): void {

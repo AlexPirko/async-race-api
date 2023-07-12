@@ -5,3 +5,19 @@
     margin-bottom: 0;
     padding: 2rem;
 }
+
+.garage {
+    display: block;
+}
+
+.garage.hide {
+    display: none;
+}
+
+.winners.hide {
+    display: none;
+}
+
+.winners {
+    display: block;
+}

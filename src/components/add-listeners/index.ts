@@ -8,6 +8,29 @@ export default class AddListeners {
         this.racing = new Racing();
     }
 
+    init() {
+        this.selectPage();
+        this.addRaceListeners();
+        this.addTrackListeners();
+    }
+
+    selectPage() {
+        const pageBtn = document.querySelector('.page-btn__wrapper') as HTMLElement;
+        pageBtn.addEventListener('click', (e) => {
+            const target: HTMLElement = e.target as HTMLElement;
+            const garagePage = document.querySelector('.garage') as HTMLElement;
+            const winnersPage = document.querySelector('.winners') as HTMLElement;
+            if (target.classList.contains('garage-btn')) {
+                garagePage.classList.remove('hide');
+                winnersPage.classList.add('hide');
+            }
+            if (target.classList.contains('winners-btn')) {
+                garagePage.classList.add('hide');
+                winnersPage.classList.remove('hide');
+            }
+        });
+    }
+
     addRaceListeners() {
         const controlBtn = document.querySelector('.control-btn') as HTMLElement;
         controlBtn.addEventListener('click', (e) => {
