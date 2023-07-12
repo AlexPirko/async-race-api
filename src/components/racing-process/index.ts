@@ -32,7 +32,7 @@ export default class Racing {
             const car = document.querySelector(`[data-car-id="${id}"]`) as HTMLElement;
             const finish = document.querySelector('.finish') as HTMLElement;
             const finishImgWidthErr = 10;
-            const path = finish.offsetLeft + finishImgWidthErr - car.offsetLeft;
+            const path: number = finish.offsetLeft + finishImgWidthErr - car.offsetLeft;
 
             start += time / path;
             car.style.transform = `translateX(${start}px)`;
@@ -48,13 +48,13 @@ export default class Racing {
             window.cancelAnimationFrame(this.animationId);
         } else {
             const ratioFromMsecToSec = 1000;
-            const winTime = (time / ratioFromMsecToSec).toFixed(2);
+            const winTime: string = (time / ratioFromMsecToSec).toFixed(2);
             console.log(winTime);
         }
     }
 
     async startRace() {
-        const cars = document.querySelectorAll('.car');
+        const cars = document.querySelectorAll('.car') as NodeListOf<Element>;
         await Promise.any([...cars].map(async (car) => this.startCarMove(+car.id)));
     }
 }
