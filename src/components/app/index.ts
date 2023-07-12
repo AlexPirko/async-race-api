@@ -1,5 +1,6 @@
 import Main from '../../view/main/index';
 import Footer from '../../view/footer/index';
+import Racing from '../racing-process';
 
 export default class App {
     private static container: HTMLElement = document.querySelector('#root') as HTMLElement;
@@ -8,9 +9,12 @@ export default class App {
 
     private footer: Footer;
 
+    private racing: Racing;
+
     constructor() {
         this.main = new Main();
         this.footer = new Footer();
+        this.racing = new Racing();
     }
 
     private createPage(): void {
@@ -21,5 +25,6 @@ export default class App {
 
     public run(): void {
         this.createPage();
+        this.racing.addRaceListeners();
     }
 }

@@ -18,7 +18,7 @@ export default class Track {
         return `<?xml version="1.0" standalone="no"?>
         <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
          "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+        <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="car-img"
          width="120px" height="70px" viewBox="0 0 1280.000000 640.000000"
          preserveAspectRatio="xMidYMid meet">
         <metadata>
@@ -117,31 +117,31 @@ export default class Track {
 
     createTrack(name: string, color: string, id: number): string {
         const html = `
-        <div class="track-control" data-id="${id}">
-            <button class="select-btn">select</button>
-            <button class="remove-btn">remove</button>
-            <div class="car-name">${name}</div>
-        </div>
-        <div class="track-block">
-            <div class="track-start">
-                <button class="start-btn">A</button>
-                <button class="stop-btn" disabled>B</button>
-                <div class="car">${this.createCarImage(color)}</div>
+        <div class="race-block" data-id="${id}">
+            <div class="track-control">
+                <button class="select-btn">select</button>
+                <button class="remove-btn">remove</button>
+                <div class="car-name">${name}</div>
             </div>
-          <div class="track-field">
-            <div class="finish"></div>
-          </div>
+            <div class="track-block">
+                <div class="track-start">
+                    <button class="start-btn">A</button>
+                    <button class="stop-btn" disabled>B</button>
+                    <div class="car" id="${id}" data-car-id="${id}">${this.createCarImage(color)}</div>
+                </div>
+                <div class="track-field">
+                    <div class="finish"></div>
+                </div>
+            </div>   
         </div>
         `;
         return html;
     }
 
     async createRace() {
-        const { cars, count } = await this.garageClient.getCars();
-        console.log(count);
+        const { cars } = await this.garageClient.getCars();
         const html = `
-            <div class="race-block">${cars.map((car: Car) => this.createTrack(car.name, car.color, car.id)).join('')}
-            </div>
+            ${cars.map((car: Car) => this.createTrack(car.name, car.color, car.id)).join('')}
         `;
 
         this.track.innerHTML = html;
