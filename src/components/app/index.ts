@@ -1,6 +1,6 @@
 import Main from '../../view/main/index';
 import Footer from '../../view/footer/index';
-import Racing from '../racing-process';
+import AddListeners from '../add-listeners';
 
 export default class App {
     private static container: HTMLElement = document.querySelector('#root') as HTMLElement;
@@ -9,12 +9,12 @@ export default class App {
 
     private footer: Footer;
 
-    private racing: Racing;
+    private listener: AddListeners;
 
     constructor() {
         this.main = new Main();
         this.footer = new Footer();
-        this.racing = new Racing();
+        this.listener = new AddListeners();
     }
 
     private createPage(): void {
@@ -25,6 +25,7 @@ export default class App {
 
     public run(): void {
         this.createPage();
-        this.racing.addRaceListeners();
+        this.listener.addRaceListeners();
+        this.listener.addTrackListeners();
     }
 }

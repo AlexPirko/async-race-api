@@ -1,5 +1,4 @@
 import { EngineClient } from '../client/engine-client';
-import getID from '../../utils/getID';
 
 export default class Racing {
     private engine: EngineClient;
@@ -12,34 +11,8 @@ export default class Racing {
         this.animationId = 0;
     }
 
-    addRaceListeners() {
-        const track = document.querySelector('.track') as HTMLElement;
-        track.addEventListener('click', (e) => {
-            const target: HTMLElement = e.target as HTMLElement;
-            const ID = getID(target);
-            if (!ID) return;
-
-            if (target.classList.contains('start-btn')) {
-                target.nextElementSibling?.removeAttribute('disabled');
-                this.startCarMove(ID);
-                target.setAttribute('disabled', 'true');
-            }
-
-            if (target.classList.contains('stop-btn')) {
-                target.setAttribute('disabled', 'false');
-                this.stopCar(ID);
-            }
-        });
-
-        const raceBtn = document.querySelector('.race-btn') as HTMLElement;
-        raceBtn.addEventListener('click', () => {
-            this.startRace();
-        });
-    }
-
     async stopCar(id: number) {
         const car = document.querySelector(`[data-car-id="${id}"]`) as HTMLElement;
-
         window.cancelAnimationFrame(this.animationId);
         car.style.transform = 'translateX(0px)';
         await this.engine.stopCarEngine(id);
@@ -50,6 +23,10 @@ export default class Racing {
         const value: string[] = Object.values(await this.engine.startCarEngine(id));
         const time: number = +(+value[1] / +value[0]).toFixed(2);
         const response = await this.engine.driveCarEngine(id);
+        const startBtn = document.querySelector(`[data-start-id = "${id}"]`) as HTMLElement;
+        const stopBtn = document.querySelector(`[data-stop-id = "${id}"]`) as HTMLElement;
+        startBtn.setAttribute('disabled', 'true');
+        stopBtn.removeAttribute('disabled');
 
         const carMove = (): void => {
             const car = document.querySelector(`[data-car-id="${id}"]`) as HTMLElement;
@@ -64,8 +41,6 @@ export default class Racing {
                 this.animationId = requestAnimationFrame(carMove);
             }
         };
-        console.log(response);
-
         window.requestAnimationFrame(carMove);
 
         if (response?.success === false) {

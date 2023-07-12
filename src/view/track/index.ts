@@ -125,8 +125,8 @@ export default class Track {
             </div>
             <div class="track-block">
                 <div class="track-start">
-                    <button class="start-btn">A</button>
-                    <button class="stop-btn" disabled>B</button>
+                    <button class="start-btn" data-start-id="${id}">A</button>
+                    <button class="stop-btn" data-stop-id="${id}" disabled>B</button>
                     <div class="car" id="${id}" data-car-id="${id}">${this.createCarImage(color)}</div>
                 </div>
                 <div class="track-field">
