@@ -1,3 +1,4 @@
+import { currentState } from '../../utils/initial-states';
 import { EngineClient } from '../client/engine-client';
 
 export default class Racing {
@@ -8,7 +9,7 @@ export default class Racing {
     constructor() {
         this.engine = new EngineClient();
 
-        this.animationId = 0;
+        this.animationId = currentState.animationId;
     }
 
     async stopCar(id: number) {
@@ -21,7 +22,7 @@ export default class Racing {
     async startCarMove(id: number) {
         let start = 0;
         const value: string[] = Object.values(await this.engine.startCarEngine(id));
-        const time: number = +(+value[1] / +value[0]).toFixed(2);
+        const time: number = Math.round(+value[1] / +value[0]);
         const response = await this.engine.driveCarEngine(id);
         const startBtn = document.querySelector(`[data-start-id = "${id}"]`) as HTMLElement;
         const stopBtn = document.querySelector(`[data-stop-id = "${id}"]`) as HTMLElement;

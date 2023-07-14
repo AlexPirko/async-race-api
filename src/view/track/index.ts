@@ -1,6 +1,6 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
-import { Car } from '../../types';
+import { Cars } from '../../types';
 import { GarageClient } from '../../components/client/garage-client';
 
 export default class Track {
@@ -141,7 +141,7 @@ export default class Track {
     async createRace() {
         const { cars } = await this.garageClient.getCars();
         const html = `
-            ${cars.map((car: Car) => this.createTrack(car.name, car.color, car.id)).join('')}
+            ${cars.map((car: Cars) => this.createTrack(car.name, car.color, car.id)).join('')}
         `;
 
         this.track.innerHTML = html;

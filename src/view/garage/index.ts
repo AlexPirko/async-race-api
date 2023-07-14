@@ -1,5 +1,6 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
+import { currentState } from '../../utils/initial-states';
 import Track from '../track';
 
 export default class Garage {
@@ -7,9 +8,15 @@ export default class Garage {
 
     track: Track;
 
+    page: number;
+
+    count: string | null;
+
     constructor() {
         this.garage = addElement('div', ['garage']);
         this.track = new Track();
+        this.page = currentState.page;
+        this.count = currentState.carCount;
     }
 
     createGarageBlock(): void {
@@ -33,8 +40,8 @@ export default class Garage {
             </div>
             <div class="primary-block">
                 <div class="info-block">
-                    <h1 class="title">Garage<span class="cars-amount">(0)</span></h1>
-                    <h3 class="num-title">Page #<span class="num-page">0</span></h3>
+                    <h1 class="title">Garage<span class="cars-amount">(${this.count})</span></h1>
+                    <h3 class="num-title">Page #<span class="num-page">${this.page}</span></h3>
                 </div>
             </div>
         `;
