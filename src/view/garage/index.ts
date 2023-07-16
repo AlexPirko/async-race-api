@@ -3,7 +3,7 @@ import addElement from '../../utils/add-elements';
 import { currentState } from '../../utils/initial-states';
 import Track from '../track';
 
-export default class Garage {
+export default class GaragePage {
     garage: HTMLElement;
 
     track: Track;

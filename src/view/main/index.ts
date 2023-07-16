@@ -1,22 +1,22 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
-import Garage from '../garage';
-import Winners from '../winners';
+import GaragePage from '../garage';
+import WinnersPage from '../winners';
 
-export default class Main {
+export default class MainPage {
     main: HTMLElement;
 
     mainContent: HTMLElement;
 
-    garage: Garage;
+    garage: GaragePage;
 
-    winners: Winners;
+    winnersPage: WinnersPage;
 
     constructor() {
         this.main = addElement('main', ['main']);
         this.mainContent = addElement('div', ['main-content']);
-        this.garage = new Garage();
-        this.winners = new Winners();
+        this.garage = new GaragePage();
+        this.winnersPage = new WinnersPage();
     }
 
     createMainContent(): void {
@@ -39,7 +39,7 @@ export default class Main {
     render(): HTMLElement {
         this.createMainContent();
         const garage = this.garage.render();
-        const winners = this.winners.render();
+        const winners = this.winnersPage.render();
         this.mainContent.append(garage, winners);
         return this.main;
     }

@@ -7,3 +7,8 @@ table,
 th {
     border: 1px solid black;
 }
+
+th svg {
+    width: 50%;
+    height: 50%;
+}

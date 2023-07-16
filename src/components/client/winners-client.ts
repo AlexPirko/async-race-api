@@ -19,12 +19,13 @@ export class WinnersClient {
 
     async getWinners(page = 1, limit = 10, sort?: string, order?: string) {
         const response = fetch(`${this.winners}/?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
-        const winners = await (await response).json();
+        const dataWinners = await (await response).json();
         const winCount = (await response).headers.get('X-Total-Count');
-        return { winners, winCount };
+        const winnersData = { dataWinners, winCount };
+        return winnersData;
     }
 
-    async createWinner(body: Winner) {
+    async createWinner(body: Winner): Promise<Response> {
         const response = await fetch(`${this.winners}`, {
             method: 'POST',
             headers: {
@@ -37,7 +38,7 @@ export class WinnersClient {
         return createdWinner;
     }
 
-    async updateWinners(id: number, body: Winner) {
+    async updateWinners(id: number, body: Winner): Promise<Response> {
         const response = await fetch(`${this.winners}/${id}`, {
             method: 'PUT',
             headers: {

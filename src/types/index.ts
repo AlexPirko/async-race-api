@@ -17,9 +17,10 @@ export type Cars = {
 };
 
 export type Winners = {
-    car: Cars;
-    color: string;
+    time: number;
+    wins: number;
     id: number;
+    car: Cars;
 };
 
 export interface IState {
@@ -27,12 +28,12 @@ export interface IState {
     winnersPage: number;
     cars: Array<Cars>;
     carCount: string | null;
-    animationId: 0;
+    animationId: number;
     winners: Array<Winners>;
     winCount: string | null;
     currentWinner: {
-        id: null;
-        wins: 0;
-        time: 0;
+        id: number | undefined;
+        wins: number;
+        time: number;
     };
 }
