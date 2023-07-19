@@ -1,21 +1,26 @@
 import getID from '../../utils/getID';
 import Racing from '../racing-process';
 import WinnersPage from '../../view/winners';
+import Creating from '../create-process';
 
 export default class AddListeners {
     private racing: Racing;
 
     private winnersPage: WinnersPage;
 
+    private creatingProcess: Creating;
+
     constructor() {
         this.racing = new Racing();
         this.winnersPage = new WinnersPage();
+        this.creatingProcess = new Creating();
     }
 
     init() {
         this.selectPage();
         this.addRaceListeners();
         this.addTrackListeners();
+        this.addCreateCarListeners();
     }
 
     selectPage() {
@@ -51,7 +56,7 @@ export default class AddListeners {
         const track = document.querySelector('.track') as HTMLElement;
         track.addEventListener('click', (e) => {
             const target: HTMLElement = e.target as HTMLElement;
-            const ID = getID(target);
+            const ID: number = getID(target);
             if (!ID) return;
 
             if (target.classList.contains('start-btn')) {
@@ -65,6 +70,17 @@ export default class AddListeners {
                 target.previousElementSibling?.removeAttribute('disabled');
                 this.racing.stopCar(ID);
             }
+
+            if (target.classList.contains('remove-btn')) {
+                this.creatingProcess.deleteCar(ID);
+            }
+        });
+    }
+
+    addCreateCarListeners() {
+        const createBtn = document.querySelector('.create-btn') as HTMLElement;
+        createBtn.addEventListener('click', () => {
+            this.creatingProcess.addNewCar();
         });
     }
 }

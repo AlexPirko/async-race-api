@@ -3,7 +3,7 @@ export default function createCarImage(color: string): string {
         <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
          "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg" class="car-img"
-         width="120px" height="70px" viewBox="0 0 1280.000000 640.000000"
+         width="100px" height="50px" viewBox="0 0 1280.000000 640.000000"
          preserveAspectRatio="xMidYMid meet">
         <metadata>
         Created by potrace 1.15, written by Peter Selinger 2001-2017
