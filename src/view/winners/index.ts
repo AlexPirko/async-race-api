@@ -2,23 +2,22 @@ import './index.css';
 import addElement from '../../utils/add-elements';
 import createCarImage from '../../utils/create-car-image';
 import { Winners } from '../../types';
-import { currentState } from '../../utils/initial-states';
+import { currentState } from '../../utils/add-initial-states';
 
 export default class WinnersPage {
     winnersView: HTMLElement;
 
     page: number;
 
-    count: string | null;
+    count: string | null | undefined;
 
     winners: Array<Winners>;
 
     constructor() {
         this.winnersView = addElement('div', ['winners', 'hide']);
         this.page = currentState.winnersPage;
-        this.count = currentState.winCount;
+        this.count = currentState?.winCount;
         this.winners = currentState.winners;
-        console.log(this.winners);
     }
 
     createTableBlock(): string {

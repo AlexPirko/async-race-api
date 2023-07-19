@@ -1,11 +1,15 @@
 import getID from '../../utils/getID';
 import Racing from '../racing-process';
+import WinnersPage from '../../view/winners';
 
 export default class AddListeners {
     private racing: Racing;
 
+    private winnersPage: WinnersPage;
+
     constructor() {
         this.racing = new Racing();
+        this.winnersPage = new WinnersPage();
     }
 
     init() {

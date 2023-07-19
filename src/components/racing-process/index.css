@@ -1,0 +1,20 @@
+.popup {
+    display: block;
+    width: 450px;
+    height: 175px;
+    background-color: antiquewhite;
+    background-image: url(../../assets/image/winner-flag.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    position: fixed;
+    left: 30%;
+    top: 36%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 5px rgba(255, 129, 179, 0.3);
+}

@@ -1,6 +1,6 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
-import { currentState } from '../../utils/initial-states';
+import { currentState } from '../../utils/add-initial-states';
 import Track from '../track';
 
 export default class GaragePage {

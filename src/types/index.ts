@@ -5,7 +5,7 @@ export type Car = {
 };
 
 export type Winner = {
-    id?: number;
+    id?: number | null;
     wins: number;
     time: number;
 };
@@ -30,10 +30,6 @@ export interface IState {
     carCount: string | null;
     animationId: number;
     winners: Array<Winners>;
-    winCount: string | null;
-    currentWinner: {
-        id: number | undefined;
-        wins: number;
-        time: number;
-    };
+    winCount: string | null | undefined;
+    initialWinner: Winner;
 }

@@ -27,7 +27,9 @@ export default class Track {
                 <div class="track-start">
                     <button class="start-btn" data-start-id="${id}">A</button>
                     <button class="stop-btn" data-stop-id="${id}" disabled>B</button>
-                    <div class="car" id="${id}" data-car-id="${id}">${createCarImage(color)}</div>
+                    <div class="car" id="${id}" data-car-id="${id}" data-car-name="${name}">${createCarImage(
+            color
+        )}</div>
                 </div>
                 <div class="track-field">
                     <div class="finish"></div>

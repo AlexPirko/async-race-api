@@ -23,9 +23,9 @@ export const currentState: IState = {
     animationId: 0,
     winners: winners,
     winCount: winnersData.winCount,
-    currentWinner: {
-        id: 1,
-        wins: 1,
-        time: 10,
+    initialWinner: {
+        id: null,
+        wins: 0,
+        time: 0,
     },
 };
