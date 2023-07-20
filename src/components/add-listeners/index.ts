@@ -20,7 +20,9 @@ export default class AddListeners {
         this.selectPage();
         this.addRaceListeners();
         this.addTrackListeners();
-        this.addCreateCarListeners();
+        this.addCreateCarListener();
+        this.addUpdateCarListener();
+        this.addGenerateCarsListener();
     }
 
     selectPage() {
@@ -74,13 +76,33 @@ export default class AddListeners {
             if (target.classList.contains('remove-btn')) {
                 this.creatingProcess.deleteCar(ID);
             }
+
+            if (target.classList.contains('select-btn')) {
+                const nameInput = document.querySelector('.update-name') as HTMLInputElement;
+                nameInput.focus();
+                this.creatingProcess.getSelectedCarId(ID);
+            }
         });
     }
 
-    addCreateCarListeners() {
+    addCreateCarListener() {
         const createBtn = document.querySelector('.create-btn') as HTMLElement;
         createBtn.addEventListener('click', () => {
             this.creatingProcess.addNewCar();
+        });
+    }
+
+    addUpdateCarListener() {
+        const updateBtn = document.querySelector('.update-btn') as HTMLButtonElement;
+        updateBtn.addEventListener('click', () => {
+            this.creatingProcess.updateCar();
+        });
+    }
+
+    addGenerateCarsListener() {
+        const generateBtn = document.querySelector('.generate-btn') as HTMLElement;
+        generateBtn.addEventListener('click', () => {
+            this.creatingProcess.generateCarBatch();
         });
     }
 }
