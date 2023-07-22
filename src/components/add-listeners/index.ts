@@ -1,10 +1,13 @@
 import getID from '../../utils/getID';
 import Racing from '../racing-process';
+import GaragePage from '../../view/garage';
 import WinnersPage from '../../view/winners';
 import Creating from '../create-process';
 
 export default class AddListeners {
     private racing: Racing;
+
+    private garage: GaragePage;
 
     private winnersPage: WinnersPage;
 
@@ -12,6 +15,7 @@ export default class AddListeners {
 
     constructor() {
         this.racing = new Racing();
+        this.garage = new GaragePage();
         this.winnersPage = new WinnersPage();
         this.creatingProcess = new Creating();
     }
@@ -23,6 +27,7 @@ export default class AddListeners {
         this.addCreateCarListener();
         this.addUpdateCarListener();
         this.addGenerateCarsListener();
+        this.garage.addGaragePaginationListener();
     }
 
     selectPage() {
