@@ -1,6 +1,7 @@
 import './index.css';
 import { Winner, Winners } from '../../types';
-import { currentState } from '../../utils/add-initial-states';
+import { initState } from '../../utils/add-initial-states';
+import { updateState } from '../../utils/update-state';
 import { EngineClient } from '../client/engine-client';
 import { WinnersClient } from '../client/winners-client';
 import WinnersPage from '../../view/winners';
@@ -23,11 +24,11 @@ export default class Racing {
 
         this.winnersClient = new WinnersClient();
 
-        this.animationId = currentState.animationId;
+        this.animationId = initState.animationId;
 
-        this.winners = currentState.winners;
+        this.winners = initState.winners;
 
-        this.winner = currentState.initialWinner;
+        this.winner = initState.initialWinner;
 
         this.winPage = new WinnersPage();
     }
@@ -57,7 +58,6 @@ export default class Racing {
 
             start += time / path;
             car.style.transform = `translateX(${start}px)`;
-
             if (start <= path) {
                 this.animationId = requestAnimationFrame(carMove);
             }
@@ -83,7 +83,7 @@ export default class Racing {
 
     async startRace() {
         const cars = document.querySelectorAll('.car') as NodeListOf<Element>;
-        await Promise.any(
+        await Promise.all(
             [...cars].map(async (car) => {
                 this.startCarMove(+car.id);
             })
@@ -91,6 +91,7 @@ export default class Racing {
     }
 
     async addRaceWinner(): Promise<void> {
+        const winnersPage = document.querySelector('.winners') as HTMLElement;
         this.winners.map(async (winner) => {
             if (winner.id === this.winner.id) {
                 await this.winnersClient.updateWinners(winner.id as number, {
@@ -99,13 +100,17 @@ export default class Racing {
                     time: this.winner.time < winner.time ? this.winner.time : winner.time,
                 });
             } else await this.winnersClient.createWinner(this.winner);
+
             setTimeout(() => {
                 this.showWinner(winner.id, winner.time);
-            }, 4000);
+            }, 2000);
         });
+
+        await updateState();
+        winnersPage.innerHTML = this.winPage.createWinnersBlock();
     }
 
-    showWinner(id: number, time: number) {
+    async showWinner(id: number, time: number) {
         const car = document.querySelector(`[data-car-id="${id}"]`) as HTMLElement;
         const name = car.dataset.carName;
         console.log(name);

@@ -30,6 +30,7 @@ export default class MainPage {
         const paginationBtnWrapper = addElement('div', ['pagination-btn__wrapper']);
         const prevBtn = addElement('button', ['prev-btn']);
         prevBtn.textContent = 'prev';
+        prevBtn.setAttribute('disabled', 'true');
         const nextBtn = addElement('button', ['next-btn']);
         nextBtn.textContent = 'next';
         paginationBtnWrapper.append(prevBtn, nextBtn);

@@ -1,6 +1,6 @@
 import './index.css';
 import addElement from '../../utils/add-elements';
-import { currentState } from '../../utils/add-initial-states';
+import { initState } from '../../utils/add-initial-states';
 import Track from '../track';
 import { addNextPagination, addPrevPagination } from '../../utils/add-pagination';
 
@@ -16,8 +16,8 @@ export default class GaragePage {
     constructor() {
         this.garage = addElement('div', ['garage']);
         this.track = new Track();
-        this.page = currentState.page;
-        this.count = currentState.carCount;
+        this.page = initState.page;
+        this.count = initState.carCount;
     }
 
     addGaragePaginationListener() {
@@ -47,14 +47,11 @@ export default class GaragePage {
                 this.page = nextValue;
                 console.log(this.page);
             }
-            this.garage.innerHTML = '';
+            this.render();
         });
-
-        this.createGarageBlock(this.page);
-        this.render();
     }
 
-    createGarageBlock(curPage: number): void {
+    createGarageBlock(): void {
         const html = `
             <div class="secondary-block">
                 <div class="create-block">
@@ -73,19 +70,13 @@ export default class GaragePage {
                     <button class="generate-btn">Generate Car</button>
                 </div>
             </div>
-            <div class="primary-block">
-                <div class="info-block">
-                    <h1 class="title">Garage - <span class="cars-amount">${this.count}</span></h1>
-                    <h3 class="num-title">Page #<span class="num-page">${curPage}</span></h3>
-                </div>
-            </div>
         `;
 
         this.garage.innerHTML = html;
     }
 
     render(): HTMLElement {
-        this.createGarageBlock(this.page);
+        this.createGarageBlock();
         const track = this.track.render();
         this.garage.append(track);
         return this.garage;

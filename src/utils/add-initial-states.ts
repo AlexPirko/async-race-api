@@ -15,7 +15,7 @@ const winners = await Promise.all(
     }))
 );
 
-export const currentState: IState = {
+export const initState: IState = {
     page: 1,
     winnersPage: 1,
     cars: cars,

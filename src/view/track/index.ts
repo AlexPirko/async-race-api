@@ -3,6 +3,7 @@ import addElement from '../../utils/add-elements';
 import createCarImage from '../../utils/create-car-image';
 import { Cars } from '../../types';
 import { GarageClient } from '../../components/client/garage-client';
+import { initState } from '../../utils/add-initial-states';
 
 export default class Track {
     public track: HTMLElement;
@@ -40,17 +41,20 @@ export default class Track {
         return html;
     }
 
-    async createRace() {
-        const { cars } = await this.garageClient.getCars();
-        const html = `
-            ${cars.map((car: Cars) => this.createTrack(car.name, car.color, car.id)).join('')}
+    createRace() {
+        return `<div class="primary-block">
+                <div class="info-block">
+                    <h1 class="title">Garage - <span class="cars-amount">${initState.carCount}</span></h1>
+                    <h3 class="num-title">Page #<span class="num-page">${initState.page}</span></h3>
+                </div>
+            </div>
+            ${initState.cars.map((car: Cars) => this.createTrack(car.name, car.color, car.id)).join('')}
         `;
-
-        this.track.innerHTML = html;
     }
 
     render(): HTMLElement {
         this.createRace();
+        this.track.innerHTML = this.createRace();
         return this.track;
     }
 }
