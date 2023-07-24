@@ -1,0 +1,168 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #af9c97;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main {
+    flex-grow: 1;
+    width: 100%;
+    font-family: Verdana, sans-serif;
+    margin-bottom: 0;
+    padding: 1rem;
+}
+
+.garage {
+    display: block;
+}
+
+.garage.hide {
+    display: none;
+}
+
+.winners.hide {
+    display: none;
+}
+
+.winners {
+    display: block;
+}
+.secondary-block {
+    margin: 1rem 0;
+}
+
+.secondary-block>div {
+    margin: 0.8rem 0;
+}
+
+.primary-block {
+    margin: 1rem 0;
+}
+
+.race-block {
+    margin: 1rem 0;
+}
+.track {
+    margin: 1.5rem 0;
+}
+
+.track-control {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.track-start {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    position: relative;
+}
+
+.start-btn,
+.stop-btn {
+    height: 2rem;
+    width: 2rem;
+    margin-bottom: 4px;
+}
+
+.car {
+    position: absolute;
+    left: 5rem;
+    bottom: -10px;
+}
+
+.track-field {
+    position: relative;
+    border-bottom: 3px dashed #0b0b0b;
+}
+
+.finish {
+    background: url(fbd7a831544c04724c66.svg) no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: 6rem;
+    bottom: 2px;
+    width: 3rem;
+    height: 3rem;
+}
+.win-table {
+    margin: 1.5rem 0;
+    min-height: 60vh;
+}
+
+table,
+th {
+    border: 1px solid black;
+}
+
+th svg {
+    width: 50%;
+    height: 50%;
+}
+.footer {
+    flex-shrink: 0;
+    background-color: #c9a9a0;
+}
+
+.footer__link {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    gap: 30px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #ffd54f;
+    display: block;
+    transition: all 300ms ease-out;
+}
+
+.footer a:hover {
+    transform: scale(1.1);
+}
+
+.footer span {
+    color: #ffecb3;
+}
+.popup {
+    display: block;
+    width: 450px;
+    height: 175px;
+    background-color: antiquewhite;
+    background-image: url(1b6a5511c0b043b639c0.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20%;
+    position: fixed;
+    left: 30%;
+    top: 36%;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px 5px rgba(255, 129, 179, 0.3);
+}
