@@ -31,5 +31,6 @@ export const initState: IState = {
     },
     isGarage: true,
     isWinners: false,
+    sortType: 'wins',
+    sortOrder: 'ASC',
 };
-console.log(initState);

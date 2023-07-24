@@ -34,4 +34,6 @@ export interface IState {
     initialWinner: Winner;
     isGarage: boolean;
     isWinners: boolean;
+    sortType: string;
+    sortOrder: string;
 }

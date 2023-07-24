@@ -29,7 +29,6 @@ export function addNextPagination(
         if (nextPage === Math.ceil(count / tableLimit)) {
             next.disabled = true;
         }
-        console.log(Math.ceil(count / (tableLimit * page)));
 
         return nextPage <= Math.ceil(count / tableLimit) ? nextPage : page;
     }

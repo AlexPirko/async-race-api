@@ -9,7 +9,12 @@ const winnersClient = new WinnersClient();
 export async function updateState(): Promise<void> {
     const tableLimit = 10;
     const { cars, count } = await garageClient.getCars(initState.page);
-    const winnersData = await winnersClient.getWinners(initState.winnersPage, tableLimit);
+    const winnersData = await winnersClient.getWinners(
+        initState.winnersPage,
+        tableLimit,
+        initState.sortType,
+        initState.sortOrder
+    );
     const winners = await Promise.all(
         winnersData.dataWinners.map(async (winner: Winners) => ({
             ...winner,

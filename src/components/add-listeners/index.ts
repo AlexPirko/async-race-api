@@ -32,6 +32,7 @@ export default class AddListeners {
         this.addGenerateCarsListener();
         this.addGaragePaginationListener();
         this.addWinnersPaginationListener();
+        this.addTableSortListener();
     }
 
     selectPage() {
@@ -184,6 +185,39 @@ export default class AddListeners {
                 await updateState();
                 winners.innerHTML = this.winnersPage.createWinnersBlock();
             }
+        });
+    }
+
+    async sortByTimeListener(): Promise<void> {
+        const winners = document.querySelector('.winners') as HTMLElement;
+
+        initState.sortType = 'time';
+        initState.sortOrder = initState.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+
+        await updateState();
+
+        winners.innerHTML = this.winnersPage.createWinnersBlock();
+    }
+
+    async addTableSortListener() {
+        const winners = document.querySelector('.winners') as HTMLElement;
+
+        winners.addEventListener('click', async (e: Event) => {
+            const target = e.target as HTMLElement;
+
+            if (target.classList.contains('wins')) {
+                console.log('click');
+                initState.sortType = 'wins';
+                initState.sortOrder = initState.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+            }
+
+            if (target.classList.contains('time')) {
+                console.log('click');
+                initState.sortType = 'time';
+                initState.sortOrder = initState.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+            }
+            await updateState();
+            winners.innerHTML = this.winnersPage.createWinnersBlock();
         });
     }
 }

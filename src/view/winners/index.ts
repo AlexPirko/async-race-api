@@ -34,12 +34,12 @@ export default class WinnersPage {
             </div>
             <div class="win-table">
                 <table class="table">
-                <thead>
+                <thead class="thead">
                     <th>Number</th>
                     <th>Car</th>
                     <th>Name</th>
-                    <th class="wins">Wins</th>
-                    <th class="time">Best time (sec)</th>
+                    <th class="wins" data-name="wins">Wins</th>
+                    <th class="time" data-name="time">Best time (sec)</th>
                 </thead>
                 <tbody>
                 ${this.createTableBlock()}
