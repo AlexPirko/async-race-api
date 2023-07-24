@@ -6,14 +6,8 @@ import { initState } from '../../utils/add-initial-states';
 export default class WinnersPage {
     winnersView: HTMLElement;
 
-    page: number;
-
-    count: string | null | undefined;
-
     constructor() {
         this.winnersView = addElement('div', ['winners', 'hide']);
-        this.page = initState.winnersPage;
-        this.count = initState?.winCount;
     }
 
     createTableBlock(): string {
@@ -35,8 +29,8 @@ export default class WinnersPage {
         return `
         <div class="winners-block">
             <div class="info-block">
-                <h1 class="title">Winners<span class="winners-amount">(${this.count})</span></h1>
-                <h3 class="num-title">Page #<span class="num-page">${this.page}</span></h3>
+                <h1 class="title">Winners - <span class="winners-amount">${initState.winCount}</span></h1>
+                <h3 class="num-title">Page #<span class="num-page">${initState.page}</span></h3>
             </div>
             <div class="win-table">
                 <table class="table">

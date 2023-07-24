@@ -32,4 +32,6 @@ export interface IState {
     winners: Array<Winners>;
     winCount: string | null | undefined;
     initialWinner: Winner;
+    isGarage: boolean;
+    isWinners: boolean;
 }

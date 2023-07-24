@@ -17,7 +17,7 @@ export class WinnersClient {
         return winner;
     }
 
-    async getWinners(page = 1, limit = 10, sort?: string, order?: string) {
+    async getWinners(page: number, limit: number, sort?: string, order?: string) {
         const response = fetch(`${this.winners}/?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
         const dataWinners = await (await response).json();
         const winCount = (await response).headers.get('X-Total-Count');

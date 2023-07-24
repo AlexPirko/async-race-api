@@ -65,8 +65,8 @@ export default class Racing {
         window.requestAnimationFrame(carMove);
 
         if (response?.success === false) {
-            await this.engine.stopCarEngine(id);
-            window.cancelAnimationFrame(this.animationId);
+            await this.stopCar(id);
+            cancelAnimationFrame(this.animationId);
         } else {
             if (this.winner.id === null) {
                 const ratioFromMsecToSec = 1000;
@@ -83,7 +83,7 @@ export default class Racing {
 
     async startRace() {
         const cars = document.querySelectorAll('.car') as NodeListOf<Element>;
-        await Promise.all(
+        await Promise.any(
             [...cars].map(async (car) => {
                 this.startCarMove(+car.id);
             })
@@ -92,7 +92,7 @@ export default class Racing {
 
     async addRaceWinner(): Promise<void> {
         const winnersPage = document.querySelector('.winners') as HTMLElement;
-        this.winners.map(async (winner) => {
+        initState.winners.map(async (winner) => {
             if (winner.id === this.winner.id) {
                 await this.winnersClient.updateWinners(winner.id as number, {
                     id: this.winner.id,
@@ -102,8 +102,8 @@ export default class Racing {
             } else await this.winnersClient.createWinner(this.winner);
 
             setTimeout(() => {
-                this.showWinner(winner.id, winner.time);
-            }, 2000);
+                this.showWinner(this.winner.id as number, this.winner.time);
+            }, 1000);
         });
 
         await updateState();
@@ -113,7 +113,6 @@ export default class Racing {
     async showWinner(id: number, time: number) {
         const car = document.querySelector(`[data-car-id="${id}"]`) as HTMLElement;
         const name = car.dataset.carName;
-        console.log(name);
 
         const popup = document.createElement('div');
         popup.classList.add('popup');

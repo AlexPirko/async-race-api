@@ -6,8 +6,9 @@ const garageClient = new GarageClient();
 const winnersClient = new WinnersClient();
 
 const initialId = 1;
+const tableLimit = 10;
 const { cars, count } = await garageClient.getCars(initialId);
-const winnersData = await winnersClient.getWinners(initialId);
+const winnersData = await winnersClient.getWinners(initialId, tableLimit);
 const winners = await Promise.all(
     winnersData.dataWinners.map(async (winner: Winners) => ({
         ...winner,
@@ -28,4 +29,7 @@ export const initState: IState = {
         wins: 0,
         time: 0,
     },
+    isGarage: true,
+    isWinners: false,
 };
+console.log(initState);

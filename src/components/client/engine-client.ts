@@ -28,20 +28,18 @@ export class EngineClient {
     }
 
     async driveCarEngine(id: number) {
-        const response = await fetch(`${this.engine}?id=${id}&status=drive`, {
-            method: 'PATCH',
-        });
-
-        if (response.status === 200) {
-            return { success: true, id: id };
-        } else if (response.status === 500) {
-            {
+        try {
+            const response = await fetch(`${this.engine}?id=${id}&status=drive`, {
+                method: 'PATCH',
+            });
+            if (response.status === 200) {
+                return { success: true, id: id };
+            }
+            if (response.status === 500) {
                 return { success: false, id: id };
             }
-        } else {
-            {
-                return;
-            }
+        } catch (err) {
+            console.error(err as Error);
         }
     }
 }
